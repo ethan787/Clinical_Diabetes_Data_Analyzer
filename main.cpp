@@ -1,18 +1,26 @@
 #include <QApplication>
+#include <QLabel>
 #include <QMainWindow>
 #include <QPushButton>
 #include <QVBoxLayout>
-#include <QLabel>
 #include <QWidget>
 #include <QtCharts/QChart>
 #include <QtCharts/QChartView>
 #include <QtCharts/QLineSeries>
+#include <QFormLayout>
+#include <QLineEdit>
+#include <QGroupBox>
+#include <QComboBox>
+#include <QSpinBox>
 
 QT_USE_NAMESPACE
 
-    class ChartWindow : public QMainWindow {
+class ChartWindow : public QMainWindow
+{
 public:
-    ChartWindow(QWidget *parent = nullptr) : QMainWindow(parent) {
+    ChartWindow(QWidget *parent = nullptr)
+        : QMainWindow(parent)
+    {
         // Create a line series and add some points
         QLineSeries *series = new QLineSeries();
         series->append(0, 6);
@@ -37,30 +45,68 @@ public:
     }
 };
 
-class WelcomeWindow : public QMainWindow {
+class WelcomeWindow : public QMainWindow
+{
 public:
-    WelcomeWindow() {
-        // Create a central widget and layout
+    WelcomeWindow()
+    {
+        // Create central widget and layout
         QWidget *centralWidget = new QWidget(this);
         QVBoxLayout *layout = new QVBoxLayout(centralWidget);
 
-        // Create and style the welcome label
-        QLabel *welcomeLabel = new QLabel("Welcome to Chart Viewer", centralWidget);
+        // Create Welcome Label
+        QLabel *welcomeLabel = new QLabel("Clinical Data Diabetic Analyzer", centralWidget);
         QFont labelFont = welcomeLabel->font();
         labelFont.setPointSize(24);
         welcomeLabel->setFont(labelFont);
+        welcomeLabel->setStyleSheet("color : #767676; font-weight: bold;");
 
-        // Create the button
+        // Create Filter Label
+        QLabel *filterLabel = new QLabel("Filters:", centralWidget);
+        labelFont.setPointSize(18);
+        filterLabel->setFont(labelFont);
+        filterLabel->setStyleSheet("QLabel {color : #B2B2B2}");
+
+        // Create divider
+        QFrame *divider = new QFrame();
+        divider->setFrameShape(QFrame::HLine);
+        divider->setFrameShadow(QFrame::Sunken);
+
+        // Create Form
+        QGroupBox *form = new QGroupBox(tr(""));
+        QFormLayout *layoutF = new QFormLayout;
+        layoutF->addRow(new QLabel(tr("Age:")), new QSpinBox);
+        layoutF->addRow(new QLabel(tr("Gender:")), new QComboBox);
+        layoutF->addRow(new QLabel(tr("Type of Graph:")), new QComboBox);
+        layoutF->setFieldGrowthPolicy(QFormLayout::AllNonFixedFieldsGrow);
+
+        QVBoxLayout *verticalBox = new QVBoxLayout;
+        verticalBox->addStretch();
+        verticalBox->addLayout(layoutF);
+        verticalBox->addStretch();
+
+        form->setLayout(verticalBox);
+        form->setMinimumWidth(300);
+        form->setMinimumHeight(200);
+
+        // Create Button
         QPushButton *showChartButton = new QPushButton("Show Chart", centralWidget);
         showChartButton->setMinimumSize(200, 50);
         QFont buttonFont = showChartButton->font();
         buttonFont.setPointSize(12);
         showChartButton->setFont(buttonFont);
+        showChartButton->setStyleSheet("color : #767676; font-weight: bold;");
 
         // Add widgets to layout
-        layout->addStretch();
+        layout->addStretch(0);
         layout->addWidget(welcomeLabel, 0, Qt::AlignCenter);
-        layout->addSpacing(20);
+        layout->addSpacing(30);
+        layout->addWidget(filterLabel, 0, Qt::AlignCenter);
+        layout->addSpacing(10);
+        layout->addWidget(divider);
+        layout->addSpacing(10);
+        layout->addWidget(form, 0, Qt::AlignCenter);
+        layout->addSpacing(30);
         layout->addWidget(showChartButton, 0, Qt::AlignCenter);
         layout->addStretch();
 
@@ -72,12 +118,13 @@ public:
         connect(showChartButton, &QPushButton::clicked, this, &WelcomeWindow::showChart);
 
         // Set window properties
-        resize(400, 300);
+        resize(550, 600);
         setWindowTitle("Welcome");
     }
 
 private slots:
-    void showChart() {
+    void showChart()
+    {
         ChartWindow *chartWindow = new ChartWindow();
         chartWindow->setAttribute(Qt::WA_DeleteOnClose);
         chartWindow->show();

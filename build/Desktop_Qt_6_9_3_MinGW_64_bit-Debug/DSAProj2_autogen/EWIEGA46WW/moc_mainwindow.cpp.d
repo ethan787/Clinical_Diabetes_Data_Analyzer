@@ -1,5 +1,5 @@
-C:/Users/Ethan/OneDrive/Documents/DSAProj2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/DSAProj2_autogen/EWIEGA46WW/moc_mainwindow.cpp: C:/Users/Ethan/OneDrive/Documents/DSAProj2/mainwindow.h \
-  C:/Users/Ethan/OneDrive/Documents/DSAProj2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/DSAProj2_autogen/moc_predefs.h \
+C:/Users/monic/QTProjects/DSA_P2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/DSAProj2_autogen/EWIEGA46WW/moc_mainwindow.cpp: C:/Users/monic/QTProjects/DSA_P2/mainwindow.h \
+  C:/Users/monic/QTProjects/DSA_P2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/DSAProj2_autogen/moc_predefs.h \
   C:/Qt/6.9.3/mingw_64/include/QtCore/q17memory.h \
   C:/Qt/6.9.3/mingw_64/include/QtCore/q20functional.h \
   C:/Qt/6.9.3/mingw_64/include/QtCore/q20iterator.h \
