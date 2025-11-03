@@ -21,6 +21,16 @@ public:
     ChartWindow(QWidget *parent = nullptr)
         : QMainWindow(parent)
     {
+        //make layout
+        QWidget *chartWidget = new QWidget(this);
+        QVBoxLayout *chartLayout = new QVBoxLayout();
+
+        // Making a heading
+        QLabel *heading = new QLabel("Graphs Based on Data Selected");
+        QFont font = heading->font();
+        font.setPointSize(24);
+        heading->setStyleSheet("font-weight: bold;");
+
         // Create a line series and add some points
         QLineSeries *series = new QLineSeries();
         series->append(0, 6);
@@ -39,8 +49,11 @@ public:
         QChartView *chartView = new QChartView(chart);
         chartView->setRenderHint(QPainter::Antialiasing);
 
-        // Set the chart view as the central widget
-        setCentralWidget(chartView);
+        // Setting up the layout & widget
+        chartLayout->addWidget(heading, 0, Qt::AlignCenter);
+        chartLayout->addWidget(chartView);
+        chartWidget->setLayout(chartLayout);
+        setCentralWidget(chartWidget);
         resize(800, 600);
     }
 };
