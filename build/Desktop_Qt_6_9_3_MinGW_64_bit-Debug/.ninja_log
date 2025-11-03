@@ -1,0 +1,9 @@
+# ninja log v6
+8	691	7838390752056549	DSAProj2_autogen/timestamp	bad8d3ad48cb51d3
+8	691	7838390752056549	DSAProj2_autogen/mocs_compilation.cpp	bad8d3ad48cb51d3
+8	691	7838390752056549	C:/Users/Ethan/OneDrive/Documents/DSAProj2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/DSAProj2_autogen/timestamp	bad8d3ad48cb51d3
+8	691	7838390752056549	C:/Users/Ethan/OneDrive/Documents/DSAProj2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/DSAProj2_autogen/mocs_compilation.cpp	bad8d3ad48cb51d3
+695	2697	7838390752905200	CMakeFiles/DSAProj2.dir/DSAProj2_autogen/mocs_compilation.cpp.obj	6ae78c21fc14b2a7
+702	2754	7838390752974383	CMakeFiles/DSAProj2.dir/mainwindow.cpp.obj	53cf4945535e4e92
+699	3192	7838390752934339	CMakeFiles/DSAProj2.dir/main.cpp.obj	6bb8ece13de4a4eb
+3197	3458	7838390777918842	DSAProj2.exe	e5b53bbe8c00649
