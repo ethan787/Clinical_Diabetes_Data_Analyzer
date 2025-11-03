@@ -13,6 +13,7 @@
 #include <QComboBox>
 #include <QSpinBox>
 #include <QStackedWidget>
+using namespace std;
 
 QT_USE_NAMESPACE
 
@@ -107,9 +108,19 @@ public:
         // form
         QGroupBox *form = new QGroupBox(tr(""));
         QFormLayout *layoutF = new QFormLayout;
+
+        QComboBox *genderBox = new QComboBox;
+        genderBox->addItem("Male");
+        genderBox->addItem("Female");
+
+        chartBox = new QComboBox;
+        chartBox->addItem("Line Chart");
+        chartBox->addItem("Bar Chart");
+        chartBox->addItem("Pie Chart");
+
         layoutF->addRow(new QLabel(tr("Age:")), new QSpinBox);
-        layoutF->addRow(new QLabel(tr("Gender:")), new QComboBox);
-        layoutF->addRow(new QLabel(tr("Type of Graph:")), new QComboBox);
+        layoutF->addRow(new QLabel(tr("Gender:")), genderBox);
+        layoutF->addRow(new QLabel(tr("Type of Graph:")), chartBox);
         layoutF->setFieldGrowthPolicy(QFormLayout::AllNonFixedFieldsGrow);
 
         QVBoxLayout *verticalBox = new QVBoxLayout;
@@ -153,22 +164,8 @@ public:
         heading->setFont(headingFont);
         heading->setStyleSheet("color : #767676; font-weight: bold;");
 
-        // line series
-        QLineSeries *series = new QLineSeries();
-        series->append(0, 6);
-        series->append(2, 4);
-        series->append(3, 8);
-        series->append(7, 4);
-        series->append(10, 5);
-
-        // chart
-        QChart *chart = new QChart();
-        chart->addSeries(series);
-        chart->createDefaultAxes();
-        chart->setTitle("Line Chart");
-
-        QChartView *chartView = new QChartView(chart);
-        chartView->setRenderHint(QPainter::Antialiasing);
+        // Display a different chart based on input
+        chartType = chartBox->currentText();
 
         // show page 3 button
         QPushButton *button = new QPushButton("Done", page2);
@@ -178,8 +175,8 @@ public:
 
         // page 2 layout
         layout2->addWidget(heading, 0, Qt::AlignCenter);
-        layout2->addWidget(chartView);
         layout2->addWidget(button, 0, Qt::AlignCenter);
+        layout2->addSpacing(10);
         page2->setLayout(layout2);
         resize(800, 600);
 
@@ -251,9 +248,6 @@ public:
         centralWidget->setLayout(layout);
         setCentralWidget(centralWidget);
 
-        // Connect button click to opening chart window
-        // connect(showChartButton, &QPushButton::clicked, this, &WelcomeWindow::showChart);
-
         // Set window properties
         resize(550, 600);
         setWindowTitle("Diabetic Analyzer");
@@ -261,12 +255,44 @@ public:
 
 private:
     QStackedWidget *cards;
-    void showChart()
-    {
+    QString chartType;
+    QComboBox *chartBox;
+    void showChart() {
         cards->setCurrentIndex(1);
+        chartType = chartBox->currentText();
+
+        if (chartType == "Line Chart") {
+            QWidget *page2 = cards->widget(1);
+            QVBoxLayout *layout2 = qobject_cast<QVBoxLayout*>(page2->layout());
+            showLineChart(layout2);
+        }
     }
     void showPage() {
         cards->setCurrentIndex(2);
+    }
+    QString checkChartType() {
+        chartType = chartBox->currentText();
+        return chartType;
+    }
+    void showLineChart(QVBoxLayout* layout) {
+        // line series
+        QLineSeries *series = new QLineSeries();
+        series->append(0, 6);
+        series->append(2, 4);
+        series->append(3, 8);
+        series->append(7, 4);
+        series->append(10, 5);
+
+        // chart
+        QChart *chart = new QChart();
+        chart->addSeries(series);
+        chart->createDefaultAxes();
+        chart->setTitle("Line Chart");
+
+        QChartView *chartView = new QChartView(chart);
+        chartView->setRenderHint(QPainter::Antialiasing);
+        int insert = layout->count() - 2;
+        layout->insertWidget(insert, chartView);
     }
 };
 
