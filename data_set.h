@@ -1,4 +1,16 @@
-#ifndef DATA_SET_H
-#define DATA_SET_H
+#ifndef DATA_set_H
+#define DATA_set_H
+#pragma once
+#include <string>
+#include <optional>
 
-#endif // DATA_SET_H
+struct DataRecord {
+    int id{},  age{} , hypertension{} , heart_disease{}, diabetes{};
+    std :: string gender , location, race , smoke_history;
+    std::optional<double> bmi , hba1c,  glucose;
+    std::string clinical_notes;
+};
+
+
+
+#endif // DATA_MODEL_H

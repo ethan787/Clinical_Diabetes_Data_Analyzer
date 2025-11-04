@@ -502,15 +502,45 @@
 	"HEADERS" : 
 	[
 		[
+			"C:/Users/Salud/Documents/DSA_Project2/CSV.h",
+			"MU",
+			"EWIEGA46WW/moc_CSV.cpp",
+			null
+		],
+		[
+			"C:/Users/Salud/Documents/DSA_Project2/backendpipline.h",
+			"MU",
+			"EWIEGA46WW/moc_backendpipline.cpp",
+			null
+		],
+		[
 			"C:/Users/Salud/Documents/DSA_Project2/data_set.h",
 			"MU",
 			"EWIEGA46WW/moc_data_set.cpp",
 			null
 		],
 		[
+			"C:/Users/Salud/Documents/DSA_Project2/filters.h",
+			"MU",
+			"EWIEGA46WW/moc_filters.cpp",
+			null
+		],
+		[
 			"C:/Users/Salud/Documents/DSA_Project2/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
+			null
+		],
+		[
+			"C:/Users/Salud/Documents/DSA_Project2/sort.h",
+			"MU",
+			"EWIEGA46WW/moc_sort.cpp",
+			null
+		],
+		[
+			"C:/Users/Salud/Documents/DSA_Project2/stats.h",
+			"MU",
+			"EWIEGA46WW/moc_stats.cpp",
 			null
 		]
 	],
@@ -591,8 +621,17 @@
 	"SETTINGS_FILE" : "C:/Users/Salud/Documents/DSA_Project2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/DSAProj2_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "C:/Users/Salud/Documents/DSA_Project2/backendCSV.cpp", "MU", null ],
+		[
+			"C:/Users/Salud/Documents/DSA_Project2/backend_pipline.cpp",
+			"MU",
+			null
+		],
+		[ "C:/Users/Salud/Documents/DSA_Project2/filters.cpp", "MU", null ],
 		[ "C:/Users/Salud/Documents/DSA_Project2/main.cpp", "MU", null ],
-		[ "C:/Users/Salud/Documents/DSA_Project2/mainwindow.cpp", "MU", null ]
+		[ "C:/Users/Salud/Documents/DSA_Project2/mainwindow.cpp", "MU", null ],
+		[ "C:/Users/Salud/Documents/DSA_Project2/sort.cpp", "MU", null ],
+		[ "C:/Users/Salud/Documents/DSA_Project2/stats.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],
