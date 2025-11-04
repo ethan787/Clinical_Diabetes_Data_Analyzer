@@ -7,6 +7,9 @@
 #include <QtCharts/QChart>
 #include <QtCharts/QChartView>
 #include <QtCharts/QLineSeries>
+#include <QtCharts/QPieSeries>
+#include <QBarSet>
+#include <QtCharts/QBarSeries>
 #include <QFormLayout>
 #include <QLineEdit>
 #include <QGroupBox>
@@ -236,10 +239,10 @@ public:
 
         // CONNECT STUFF
         connect(showChartButton, &QPushButton::clicked, this, [this]() {
-            showChart();
+            showChartPage();
         });
         connect(button, &QPushButton::clicked, this, [this]() {
-            showPage();
+            showHelpPage();
         });
 
         layout->addWidget(cards);
@@ -257,7 +260,7 @@ private:
     QStackedWidget *cards;
     QString chartType;
     QComboBox *chartBox;
-    void showChart() {
+    void showChartPage() {
         cards->setCurrentIndex(1);
         chartType = chartBox->currentText();
 
@@ -265,9 +268,17 @@ private:
             QWidget *page2 = cards->widget(1);
             QVBoxLayout *layout2 = qobject_cast<QVBoxLayout*>(page2->layout());
             showLineChart(layout2);
+        } else if (chartType == "Pie Chart") {
+            QWidget *page2 = cards->widget(1);
+            QVBoxLayout *layout2 = qobject_cast<QVBoxLayout*>(page2->layout());
+            showPieChart(layout2);
+        } else if (chartType == "Bar Chart") {
+            QWidget *page2 = cards->widget(1);
+            QVBoxLayout *layout2 = qobject_cast<QVBoxLayout*>(page2->layout());
+            showBarChart(layout2);
         }
     }
-    void showPage() {
+    void showHelpPage() {
         cards->setCurrentIndex(2);
     }
     QString checkChartType() {
@@ -287,7 +298,55 @@ private:
         QChart *chart = new QChart();
         chart->addSeries(series);
         chart->createDefaultAxes();
-        chart->setTitle("Line Chart");
+        chart->setTitle("Line Chart Example");
+
+        QChartView *chartView = new QChartView(chart);
+        chartView->setRenderHint(QPainter::Antialiasing);
+        int insert = layout->count() - 2;
+        layout->insertWidget(insert, chartView);
+    }
+    void showPieChart(QVBoxLayout* layout) {
+        QPieSeries *series = new QPieSeries();
+        series->append("Label 1", 80);
+        series->append("Label 2", 70);
+        series->append("Label 3", 50);
+        series->append("Label 4", 40);
+        series->append("Label 5", 30);
+
+        QChart *chart = new QChart();
+        chart->addSeries(series);
+        chart->setTitle("Pie Chart Example");
+
+        QChartView *chartView = new QChartView(chart);
+        chartView->setRenderHint(QPainter::Antialiasing);
+        int insert = layout->count() - 2;
+        layout->insertWidget(insert, chartView);
+    }
+    void showBarChart(QVBoxLayout* layout) {
+        QBarSet *set0 = new QBarSet("Set 0");
+        QBarSet *set1 = new QBarSet("Set 1");
+        QBarSet *set2 = new QBarSet("Set 2");
+        // QBarSet *set3 = new QBarSet("Set 3");
+        // QBarSet *set4 = new QBarSet("Set 4");
+
+        set0->append(30);
+        set0->append(40);
+        set0->append(10);
+        set1->append(10);
+        set1->append(30);
+        set1->append(42);
+        set2->append(80);
+        set2->append(100);
+        set2->append(70);
+
+        QBarSeries *series = new QBarSeries();
+        series->append(set0);
+        series->append(set1);
+        series->append(set2);
+
+        QChart *chart = new QChart();
+        chart->addSeries(series);
+        chart->setTitle("Bar Chart Example");
 
         QChartView *chartView = new QChartView(chart);
         chartView->setRenderHint(QPainter::Antialiasing);
