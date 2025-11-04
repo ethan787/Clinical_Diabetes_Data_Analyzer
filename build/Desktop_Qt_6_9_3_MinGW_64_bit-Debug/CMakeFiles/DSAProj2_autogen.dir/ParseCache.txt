@@ -375,6 +375,6 @@ C:/Users/Salud/Documents/DSA_Project2/mainwindow.h
  mdp:C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h
  mdp:C:/Users/Salud/Documents/DSA_Project2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/DSAProj2_autogen/moc_predefs.h
  mdp:C:/Users/Salud/Documents/DSA_Project2/mainwindow.h
+C:/Users/Salud/Documents/DSA_Project2/main.cpp
 C:/Users/Salud/Documents/DSA_Project2/mainwindow.cpp
  uic:./ui_mainwindow.h
-C:/Users/Salud/Documents/DSA_Project2/main.cpp

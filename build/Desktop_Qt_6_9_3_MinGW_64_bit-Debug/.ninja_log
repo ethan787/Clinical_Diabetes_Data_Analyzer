@@ -1,9 +1,9 @@
 # ninja log v6
-10	1068	7839372183375561	DSAProj2_autogen/timestamp	be19f36cf3fcc0a9
-10	1068	7839372183375561	DSAProj2_autogen/mocs_compilation.cpp	be19f36cf3fcc0a9
-10	1068	7839372183375561	C:/Users/Salud/Documents/DSA_Project2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/DSAProj2_autogen/timestamp	be19f36cf3fcc0a9
-10	1068	7839372183375561	C:/Users/Salud/Documents/DSA_Project2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/DSAProj2_autogen/mocs_compilation.cpp	be19f36cf3fcc0a9
-1076	3075	7839372184907398	CMakeFiles/DSAProj2.dir/DSAProj2_autogen/mocs_compilation.cpp.obj	52e5af1fd4e2ed8a
-1094	3103	7839372185088669	CMakeFiles/DSAProj2.dir/mainwindow.cpp.obj	c168da1d9dec8082
-1085	3824	7839372184993203	CMakeFiles/DSAProj2.dir/main.cpp.obj	7a22892320c2a5b9
-3825	4291	7839372212397114	DSAProj2.exe	e5b53bbe8c00649
+79	488	7839374637011782	DSAProj2_autogen/timestamp	be19f36cf3fcc0a9
+79	488	7839374637011782	DSAProj2_autogen/mocs_compilation.cpp	be19f36cf3fcc0a9
+79	488	7839374637011782	C:/Users/Salud/Documents/DSA_Project2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/DSAProj2_autogen/mocs_compilation.cpp	be19f36cf3fcc0a9
+79	488	7839374637011782	C:/Users/Salud/Documents/DSA_Project2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/DSAProj2_autogen/timestamp	be19f36cf3fcc0a9
+502	3858	7839374641233919	CMakeFiles/DSAProj2.dir/main.cpp.obj	7a22892320c2a5b9
+490	2832	7839374641117338	CMakeFiles/DSAProj2.dir/DSAProj2_autogen/mocs_compilation.cpp.obj	52e5af1fd4e2ed8a
+517	2988	7839374641385940	CMakeFiles/DSAProj2.dir/mainwindow.cpp.obj	c168da1d9dec8082
+3858	4202	7839374674804298	DSAProj2.exe	e5b53bbe8c00649
