@@ -112,7 +112,10 @@ public:
         QGroupBox *form = new QGroupBox(tr(""));
         QFormLayout *layoutF = new QFormLayout;
 
-        QComboBox *genderBox = new QComboBox;
+        ageBox = new QSpinBox();
+        ageBox->setRange(0, 110);
+
+        genderBox = new QComboBox;
         genderBox->addItem("Male");
         genderBox->addItem("Female");
 
@@ -121,7 +124,7 @@ public:
         chartBox->addItem("Bar Chart");
         chartBox->addItem("Pie Chart");
 
-        layoutF->addRow(new QLabel(tr("Age:")), new QSpinBox);
+        layoutF->addRow(new QLabel(tr("Age:")), ageBox);
         layoutF->addRow(new QLabel(tr("Gender:")), genderBox);
         layoutF->addRow(new QLabel(tr("Type of Graph:")), chartBox);
         layoutF->setFieldGrowthPolicy(QFormLayout::AllNonFixedFieldsGrow);
@@ -259,7 +262,12 @@ public:
 private:
     QStackedWidget *cards;
     QString chartType;
+    QString userGender;
+    int userAge;
     QComboBox *chartBox;
+    QComboBox *genderBox;
+    QSpinBox *ageBox;
+
     void showChartPage() {
         cards->setCurrentIndex(1);
         chartType = chartBox->currentText();
@@ -284,6 +292,14 @@ private:
     QString checkChartType() {
         chartType = chartBox->currentText();
         return chartType;
+    }
+    QString checkUserGender() {
+        userGender = genderBox->currentText();
+        return userGender;
+    }
+    int checkUserAge() {
+        userAge = ageBox->value();
+        return userAge;
     }
     void showLineChart(QVBoxLayout* layout) {
         // line series
