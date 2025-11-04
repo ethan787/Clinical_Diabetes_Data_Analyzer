@@ -1,76 +1,25 @@
 #include <QApplication>
-#include <QLabel>
 #include <QMainWindow>
-#include <QPushButton>
-#include <QVBoxLayout>
+#include <QStackedWidget>
 #include <QWidget>
+#include <QVBoxLayout>
+#include <QFormLayout>
+#include <QGroupBox>
+#include <QComboBox>
+#include <QSpinBox>
+#include <QLabel>
+#include <QPushButton>
 #include <QtCharts/QChart>
 #include <QtCharts/QChartView>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QPieSeries>
-#include <QBarSet>
 #include <QtCharts/QBarSeries>
-#include <QFormLayout>
+#include <QBarSet>
 #include <QLineEdit>
-#include <QGroupBox>
-#include <QComboBox>
-#include <QSpinBox>
-#include <QStackedWidget>
+
 using namespace std;
 
 QT_USE_NAMESPACE
-
-class ChartWindow : public QMainWindow
-{
-public:
-    ChartWindow(QWidget *parent = nullptr)
-        : QMainWindow(parent)
-    {
-        //make layout
-        QWidget *chartWidget = new QWidget(this);
-        QVBoxLayout *chartLayout = new QVBoxLayout();
-
-        // Making a heading
-        QLabel *heading = new QLabel("Wrong Page");
-        QFont font = heading->font();
-        font.setPointSize(24);
-        heading->setStyleSheet("font-weight: bold;");
-
-        // Create a line series and add some points
-        QLineSeries *series = new QLineSeries();
-        series->append(0, 6);
-        series->append(2, 4);
-        series->append(3, 8);
-        series->append(7, 4);
-        series->append(10, 5);
-
-        // Create a chart and add the line series
-        QChart *chart = new QChart();
-        chart->addSeries(series);
-        chart->createDefaultAxes();
-        chart->setTitle("Simple Line Chart Example");
-
-        // Create a chart view and set the chart
-        QChartView *chartView = new QChartView(chart);
-        chartView->setRenderHint(QPainter::Antialiasing);
-
-        // Create Button
-        QPushButton *button = new QPushButton("Done", chartWidget);
-        button->setMinimumSize(200, 50);
-        QFont buttonFont = button->font();
-        buttonFont.setPointSize(12);
-        button->setFont(buttonFont);
-        button->setStyleSheet("color : #767676; font-weight: bold;");
-
-        // Setting up the layout & widget
-        chartLayout->addWidget(heading, 0, Qt::AlignCenter);
-        chartLayout->addWidget(chartView);
-        chartLayout->addWidget(button, 0, Qt::AlignCenter);
-        chartWidget->setLayout(chartLayout);
-        setCentralWidget(chartWidget);
-        resize(800, 600);
-    }
-};
 
 class WelcomeWindow : public QMainWindow
 {
