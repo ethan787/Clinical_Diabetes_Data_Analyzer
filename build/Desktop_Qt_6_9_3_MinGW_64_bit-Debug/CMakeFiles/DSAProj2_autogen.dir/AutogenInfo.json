@@ -1,19 +1,19 @@
 {
 	"AUTOGEN_COMMAND_LINE_LENGTH_MAX" : 32000,
-	"BUILD_DIR" : "C:/Users/Ethan/OneDrive/Documents/DSAProj2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/DSAProj2_autogen",
-	"CMAKE_BINARY_DIR" : "C:/Users/Ethan/OneDrive/Documents/DSAProj2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug",
-	"CMAKE_CURRENT_BINARY_DIR" : "C:/Users/Ethan/OneDrive/Documents/DSAProj2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug",
-	"CMAKE_CURRENT_SOURCE_DIR" : "C:/Users/Ethan/OneDrive/Documents/DSAProj2",
+	"BUILD_DIR" : "C:/Users/Salud/Documents/DSA_Project2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/DSAProj2_autogen",
+	"CMAKE_BINARY_DIR" : "C:/Users/Salud/Documents/DSA_Project2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "C:/Users/Salud/Documents/DSA_Project2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "C:/Users/Salud/Documents/DSA_Project2",
 	"CMAKE_EXECUTABLE" : "C:/Qt/Tools/CMake_64/bin/cmake.exe",
 	"CMAKE_LIST_FILES" : 
 	[
-		"C:/Users/Ethan/OneDrive/Documents/DSAProj2/CMakeLists.txt",
-		"C:/Users/Ethan/OneDrive/Documents/DSAProj2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/.qtc/package-manager/auto-setup.cmake",
-		"C:/Users/Ethan/OneDrive/Documents/DSAProj2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/3.30.5/CMakeSystem.cmake",
-		"C:/Users/Ethan/OneDrive/Documents/DSAProj2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/.qtc/package-manager/maintenance_tool_provider.cmake",
+		"C:/Users/Salud/Documents/DSA_Project2/CMakeLists.txt",
+		"C:/Users/Salud/Documents/DSA_Project2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/.qtc/package-manager/auto-setup.cmake",
+		"C:/Users/Salud/Documents/DSA_Project2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/3.30.5/CMakeSystem.cmake",
+		"C:/Users/Salud/Documents/DSA_Project2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/.qtc/package-manager/maintenance_tool_provider.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/Platform/Windows-Initialize.cmake",
-		"C:/Users/Ethan/OneDrive/Documents/DSAProj2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake",
+		"C:/Users/Salud/Documents/DSA_Project2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeGenericSystem.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake",
@@ -26,7 +26,7 @@
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/Platform/Windows-GNU.cmake",
-		"C:/Users/Ethan/OneDrive/Documents/DSAProj2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/3.30.5/CMakeRCCompiler.cmake",
+		"C:/Users/Salud/Documents/DSA_Project2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/3.30.5/CMakeRCCompiler.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeRCInformation.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/Platform/Windows-windres.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX-ABI.cmake",
@@ -495,22 +495,58 @@
 		"C:/Qt/6.9.3/mingw_64/lib/cmake/Qt6/Qt6Dependencies.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/GNUInstallDirs.cmake"
 	],
-	"CMAKE_SOURCE_DIR" : "C:/Users/Ethan/OneDrive/Documents/DSAProj2",
+	"CMAKE_SOURCE_DIR" : "C:/Users/Salud/Documents/DSA_Project2",
 	"CROSS_CONFIG" : false,
-	"DEP_FILE" : "C:/Users/Ethan/OneDrive/Documents/DSAProj2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/DSAProj2_autogen/deps",
+	"DEP_FILE" : "C:/Users/Salud/Documents/DSA_Project2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/DSAProj2_autogen/deps",
 	"DEP_FILE_RULE_NAME" : "DSAProj2_autogen/timestamp",
 	"HEADERS" : 
 	[
 		[
-			"C:/Users/Ethan/OneDrive/Documents/DSAProj2/mainwindow.h",
+			"C:/Users/Salud/Documents/DSA_Project2/CSV.h",
+			"MU",
+			"EWIEGA46WW/moc_CSV.cpp",
+			null
+		],
+		[
+			"C:/Users/Salud/Documents/DSA_Project2/backendpipline.h",
+			"MU",
+			"EWIEGA46WW/moc_backendpipline.cpp",
+			null
+		],
+		[
+			"C:/Users/Salud/Documents/DSA_Project2/data_set.h",
+			"MU",
+			"EWIEGA46WW/moc_data_set.cpp",
+			null
+		],
+		[
+			"C:/Users/Salud/Documents/DSA_Project2/filters.h",
+			"MU",
+			"EWIEGA46WW/moc_filters.cpp",
+			null
+		],
+		[
+			"C:/Users/Salud/Documents/DSA_Project2/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
+			null
+		],
+		[
+			"C:/Users/Salud/Documents/DSA_Project2/sort.h",
+			"MU",
+			"EWIEGA46WW/moc_sort.cpp",
+			null
+		],
+		[
+			"C:/Users/Salud/Documents/DSA_Project2/stats.h",
+			"MU",
+			"EWIEGA46WW/moc_stats.cpp",
 			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
-	"INCLUDE_DIR" : "C:/Users/Ethan/OneDrive/Documents/DSAProj2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/DSAProj2_autogen/include",
-	"MOC_COMPILATION_FILE" : "C:/Users/Ethan/OneDrive/Documents/DSAProj2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/DSAProj2_autogen/mocs_compilation.cpp",
+	"INCLUDE_DIR" : "C:/Users/Salud/Documents/DSA_Project2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/DSAProj2_autogen/include",
+	"MOC_COMPILATION_FILE" : "C:/Users/Salud/Documents/DSA_Project2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/DSAProj2_autogen/mocs_compilation.cpp",
 	"MOC_DEFINITIONS" : 
 	[
 		"MINGW_HAS_SECURE_API=1",
@@ -572,25 +608,30 @@
 		"-c",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeCXXCompilerABI.cpp"
 	],
-	"MOC_PREDEFS_FILE" : "C:/Users/Ethan/OneDrive/Documents/DSAProj2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/DSAProj2_autogen/moc_predefs.h",
+	"MOC_PREDEFS_FILE" : "C:/Users/Salud/Documents/DSA_Project2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/DSAProj2_autogen/moc_predefs.h",
 	"MOC_RELAXED_MODE" : false,
 	"MOC_SKIP" : [],
 	"MULTI_CONFIG" : false,
-	"PARALLEL" : 8,
-	"PARSE_CACHE_FILE" : "C:/Users/Ethan/OneDrive/Documents/DSAProj2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/DSAProj2_autogen.dir/ParseCache.txt",
+	"PARALLEL" : 14,
+	"PARSE_CACHE_FILE" : "C:/Users/Salud/Documents/DSA_Project2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/DSAProj2_autogen.dir/ParseCache.txt",
 	"QT_MOC_EXECUTABLE" : "C:/Qt/6.9.3/mingw_64/bin/moc.exe",
 	"QT_UIC_EXECUTABLE" : "C:/Qt/6.9.3/mingw_64/bin/uic.exe",
 	"QT_VERSION_MAJOR" : 6,
 	"QT_VERSION_MINOR" : 9,
-	"SETTINGS_FILE" : "C:/Users/Ethan/OneDrive/Documents/DSAProj2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/DSAProj2_autogen.dir/AutogenUsed.txt",
+	"SETTINGS_FILE" : "C:/Users/Salud/Documents/DSA_Project2/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug/CMakeFiles/DSAProj2_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
-		[ "C:/Users/Ethan/OneDrive/Documents/DSAProj2/main.cpp", "MU", null ],
+		[ "C:/Users/Salud/Documents/DSA_Project2/backendCSV.cpp", "MU", null ],
 		[
-			"C:/Users/Ethan/OneDrive/Documents/DSAProj2/mainwindow.cpp",
+			"C:/Users/Salud/Documents/DSA_Project2/backend_pipline.cpp",
 			"MU",
 			null
-		]
+		],
+		[ "C:/Users/Salud/Documents/DSA_Project2/filters.cpp", "MU", null ],
+		[ "C:/Users/Salud/Documents/DSA_Project2/main.cpp", "MU", null ],
+		[ "C:/Users/Salud/Documents/DSA_Project2/mainwindow.cpp", "MU", null ],
+		[ "C:/Users/Salud/Documents/DSA_Project2/sort.cpp", "MU", null ],
+		[ "C:/Users/Salud/Documents/DSA_Project2/stats.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],
