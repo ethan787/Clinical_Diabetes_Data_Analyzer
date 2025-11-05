@@ -32,9 +32,15 @@ static int to_int(const std::string& s, int def = -1){
     try { return std::stoi(s); } catch (...) { return def; }
 }
 
-static double to_double(const std::string& s, double def = -1.0){
-    if (s.empty()) return def;
-    try { return std::stod(s); } catch (...) { return def; }
+static std::optional<double> to_double(const std::string& s) {
+    if (s.empty()) return std::nullopt;
+    try {
+        double val = std::stod(s);
+        if (val < 0) return std::nullopt; // Assuming negative values are invalid
+        return val;
+    } catch (...) {
+        return std::nullopt;
+    }
 }
 
 std::vector<DataRecord> load_CSV(const std::string& path){
@@ -72,9 +78,9 @@ std::vector<DataRecord> load_CSV(const std::string& path){
         DataRecord q;
         q.id= to_int(S(the_id), -1); q.gender = S(the_g); q.age = to_int(S(the_a), -1); q.hypertension  = to_int(S(the_h), 0);
 
-        q.heart_disease = to_int(S(the_hd), 0); q.smoke_history = S(the_s); q.bmi = to_double(S(the_b), -1.0);  q.hba1c  = to_double(S(the_a1), -1.0);
+        q.heart_disease = to_int(S(the_hd), 0); q.smoke_history = S(the_s); q.bmi = to_double(S(the_b));  q.hba1c  = to_double(S(the_a1));
 
-         q.glucose = to_int(S(the_gl), -1);  q.diabetes = to_int(S(the_d), 0);  rows.push_back(q);
+         q.glucose = to_double(S(the_gl));  q.diabetes = to_int(S(the_d), 0);  rows.push_back(q);
 
 
     }

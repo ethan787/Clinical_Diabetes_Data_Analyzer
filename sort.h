@@ -6,7 +6,7 @@
 
 enum class SortField { Age, Glucose, HbA1c, BMI };
 enum class SortOrder { Asc, Desc };
-enum class Algorithm { Insertion, Bubble };
+enum class Algorithm { Quick, Merge };
 
 void sort_records(std::vector<DataRecord>& data, Algorithm algo, SortField field,SortOrder order);
 
