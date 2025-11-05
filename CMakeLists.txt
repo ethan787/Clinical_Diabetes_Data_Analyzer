@@ -36,7 +36,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         sort.cpp
         stats.h
         stats.cpp
-        backend_pipline.cpp
+        backendpipline.cpp
         backendpipline.h
     )
 # Define target properties for Android with Qt 6 as:

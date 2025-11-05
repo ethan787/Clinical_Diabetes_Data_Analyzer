@@ -37,7 +37,7 @@ static double to_double(const std::string& s, double def = -1.0){
     try { return std::stod(s); } catch (...) { return def; }
 }
 
-std::vector<DataRecord> load_csv(const std::string& path){
+std::vector<DataRecord> load_CSV(const std::string& path){
     std::ifstream in(path);
     std::vector<DataRecord> rows;
     if(!in) return rows;
