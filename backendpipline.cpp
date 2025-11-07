@@ -1,24 +1,23 @@
 #include "backendpipline.h"
+using namespace std;
 
-std::vector<DataRecord> run_backend_pipeline(const std::string& csvPath, double* outPercent) {
-    // 1) load
-    auto all = load_CSV(csvPath);
+// Created a vector to run the data
+vector<DataRecord> run_backend_pipeline(const string& data_CSV, double*  percent_out) {
+
+    // We are loading teh data of the information
+    vector<DataRecord> all = load_CSV(data_CSV);
+    // create a if statement on this line to check if data is empty or not
     if (all.empty()) {
-        if (outPercent) *outPercent = 0.0;
+        // if there is a percent out there
+        if (percent_out) *percent_out = 0.0;
+
         return {};
     }
 
-    // 2) filter (example: Female, ages 30–60)
-    auto pick = filter_by_gender(all, "Female");
-    pick = filter_by_age_range(pick, 30, 60);
+   // This vector will create a vector to filter out for the Gen
+    vector<DataRecord> select = filterGen(all, "Female");
 
-     // 3) sort (beginner default)
+    select = filterAge(select, 30, 60);
 
-    // // sort_records(pick, Algorithm::Insertion, SortField::Glucose, SortOrder::Asc);  // <<< only change needed
-    //
-
-    // 4) stat (optional)
-    // if (outPercent) *outPercent =  dia_rate(pick);
-
-    return pick;
+    return select;
 }

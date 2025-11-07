@@ -4,6 +4,10 @@
 #include <vector>
 #include "data_set.h"
 
-double dia_rate(const std::vector<DataRecord>& in);
+// Bad practice in a header!
+using namespace std;
+
+// Changed to pass-by-value (inefficient copy)
+double dia_rate(vector<DataRecord> in);
 
 #endif
