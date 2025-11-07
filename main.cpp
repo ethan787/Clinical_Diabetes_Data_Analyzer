@@ -21,6 +21,8 @@ using namespace std;
 
 QT_USE_NAMESPACE
 
+
+// Merge Sort, Wuick Sort, and Heap
 class WelcomeWindow : public QMainWindow
 {
 public:
