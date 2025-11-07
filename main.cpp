@@ -15,38 +15,26 @@
 #include <QtCharts/QPieSeries>
 #include <QtCharts/QBarSeries>
 #include <QBarSet>
-// --- ADDED: Need these includes for Bar Chart axes ---
 #include <QBarCategoryAxis>
 #include <QValueAxis>
-// --- END ADDED ---
 #include <QLineEdit>
-// --- ADDED: Need these includes for popups, logging, and stats ---
 #include <QMessageBox>
 #include <iostream>
 #include <map>
-// --- END ADDED ---
-
-// --- ADDED: Include all your backend header files ---
 #include "data_set.h"
 #include "CSV.h"
 #include "filters.h"
 #include "sort.h"
 #include "stats.h"
 #include <QDir>
-// --- END ADDED ---
 
 
 using namespace std;
 
 QT_USE_NAMESPACE
 
-<<<<<<< HEAD
 
-// Merge Sort, Wuick Sort, and Heap
-class WelcomeWindow : public QMainWindow
-=======
     class WelcomeWindow : public QMainWindow
->>>>>>> 67d73720ff62e89ca253699592903eaaad65f490
 {
 public:
     WelcomeWindow()
@@ -86,7 +74,6 @@ public:
         QGroupBox *form = new QGroupBox(tr(""));
         QFormLayout *layoutF = new QFormLayout;
 
-        // --- CHANGED: Replaced single 'ageBox' with min/max ---
         minAgeBox = new QSpinBox();
         minAgeBox->setRange(0, 110);
         minAgeBox->setValue(0);
@@ -94,28 +81,20 @@ public:
         maxAgeBox = new QSpinBox();
         maxAgeBox->setRange(0, 110);
         maxAgeBox->setValue(110);
-        // --- END CHANGED ---
 
         genderBox = new QComboBox;
-        // --- ADDED: "All" option for filtering ---
         genderBox->addItem("All");
-        // --- END ADDED ---
         genderBox->addItem("Male");
         genderBox->addItem("Female");
-        // --- ADDED: "Other" option from your CSV data ---
         genderBox->addItem("Other");
-        // --- END ADDED ---
 
         chartBox = new QComboBox;
-        // --- CHANGED: Made chart names more descriptive ---
         chartBox->addItem("Line Chart (Glucose)");
         chartBox->addItem("Bar Chart (Age Distribution)");
         chartBox->addItem("Pie Chart (Diabetes %)");
-        // --- END CHANGED ---
 
-        // --- ADDED: New UI elements for sorting (your part) ---
         algoBox = new QComboBox;
-        algoBox->addItem("Quick Sort"); // Per your request
+        algoBox->addItem("Quick Sort");
         algoBox->addItem("Merge Sort");
 
         fieldBox = new QComboBox;
@@ -123,17 +102,13 @@ public:
         fieldBox->addItem("Glucose");
         fieldBox->addItem("HbA1c");
         fieldBox->addItem("BMI");
-        // --- END ADDED ---
 
-        // --- CHANGED: Updated form layout with new boxes ---
         layoutF->addRow(new QLabel(tr("Min Age:")), minAgeBox);
         layoutF->addRow(new QLabel(tr("Max Age:")), maxAgeBox);
         layoutF->addRow(new QLabel(tr("Gender:")), genderBox);
         layoutF->addRow(new QLabel(tr("Type of Graph:")), chartBox);
-        // --- ADDED: New rows for sorting ---
         layoutF->addRow(new QLabel(tr("Sort Algorithm:")), algoBox);
         layoutF->addRow(new QLabel(tr("Sort By:")), fieldBox);
-        // --- END ADDED ---
 
         layoutF->setFieldGrowthPolicy(QFormLayout::AllNonFixedFieldsGrow);
 
@@ -178,9 +153,8 @@ public:
         heading->setFont(headingFont);
         heading->setStyleSheet("color : #767676; font-weight: bold;");
 
-        // --- CHANGED: Removed placeholder chart creation ---
-        // chartType = chartBox->currentText(); // This is now done in the pipeline
-        // --- END CHANGED ---
+        // chartType = chartBox->currentText(); //not needed anymore as it got implemented in the pipelie
+        // DO NOT UNCOMMENT
 
         // show page 3 button
         QPushButton *button = new QPushButton("Done", page2);
@@ -190,9 +164,7 @@ public:
 
         // page 2 layout
         layout2->addWidget(heading, 0, Qt::AlignCenter);
-        // --- ADDED: A stretch to hold the chart (added later) ---
         layout2->addStretch();
-        // --- END ADDED ---
         layout2->addWidget(button, 0, Qt::AlignCenter);
         layout2->addSpacing(10);
         page2->setLayout(layout2);
@@ -212,9 +184,7 @@ public:
         linksSHeading->setFont(sHeadingFont);
         linksSHeading->setStyleSheet("color : #B2B2B2; font-weight: bold;");
 
-        // --- CHANGED: Made link text more descriptive ---
         QLabel *link = new QLabel("<a href = \"https://www.redcross.org/about-us/news-and-events/news/2025/diabetes-month--busting-myths--saving-lives.html?srsltid=AfmBOoqMTT_ojPT9rooqXcW0F9jhzdG5rQ9TrjiAL6D3zQuWBrg4rpm7\">Red Cross: Diabetes Myths</a>");
-        // --- END CHANGED ---
         link->setTextInteractionFlags(Qt::TextBrowserInteraction);
         link->setOpenExternalLinks(true);
 
@@ -226,7 +196,6 @@ public:
         paragraph->setFrameShape(QFrame::Box);
         paragraph->setFrameShadow(QFrame::Plain);
         paragraph->setLineWidth(1);
-        // --- CHANGED: Updated style and text for prevention ---
         paragraph->setStyleSheet("background-color: #F0F0F0; border-radius: 15px; padding: 10px;");
 
         QVBoxLayout *paragraphLayout = new QVBoxLayout;
@@ -240,7 +209,6 @@ public:
             "<br><br>Prevention is important because uncontrolled diabetes can lead to serious health issues, including heart disease, kidney damage, and vision problems. "
             "Early detection and management can significantly improve long-term health outcomes."
             );
-        // --- END CHANGED ---
         prevParagraph->setWordWrap(true);
         paragraph->setLayout(paragraphLayout);
         paragraphLayout->addWidget(prevParagraph);
@@ -264,9 +232,7 @@ public:
         cards->addWidget(page3);
 
         // CONNECT STUFF
-        // --- CHANGED: Connect button to the NEW pipeline function ---
         connect(showChartButton, &QPushButton::clicked, this, &WelcomeWindow::runBackendPipeline);
-        // --- END CHANGED ---
         connect(button, &QPushButton::clicked, this, &WelcomeWindow::showHelpPage);
 
         layout->addWidget(cards);
@@ -275,45 +241,25 @@ public:
         centralWidget->setLayout(layout);
         setCentralWidget(centralWidget);
 
-        // --- ADDED: Load the CSV data when the app starts ---
+        // load of CSV data when the app starts
         loadData();
-        // --- END ADDED ---
 
         // Set window properties
         resize(550, 600);
         setWindowTitle("Diabetic Analyzer");
     }
 
-    // --- THIS IS THE SECTION THAT FIXES YOUR ERRORS ---
-    // --- It declares all the private member variables for the class ---
+
 private:
     QStackedWidget *cards;
-
-    // --- CHANGED: Replaced old private variables with new ones ---
-    // Your original file had:
-    // QString chartType;
-    // QString userGender;
-    // int userAge;
-    // QSpinBox *ageBox;
-    //
-    // They are replaced with these:
     QComboBox *chartBox;
     QComboBox *genderBox;
-    QSpinBox *minAgeBox; // <--- Declaration for minAgeBox
-    QSpinBox *maxAgeBox; // <--- Declaration for maxAgeBox
-    QComboBox *algoBox;  // <--- Declaration for algoBox
-    QComboBox *fieldBox; // <--- Declaration for fieldBox
-    // --- END CHANGED ---
-
-    // --- ADDED: This vector holds all your data ---
+    QSpinBox *minAgeBox;
+    QSpinBox *maxAgeBox;
+    QComboBox *algoBox;
+    QComboBox *fieldBox;
     std::vector<DataRecord> allPatientData;
-    // --- END ADDED ---
 
-    // ---
-    // --- The following functions replace all your old private functions ---
-    // ---
-
-    // --- ADDED: New function to load data ---
     void loadData() {
         // --- Use Qt's path utilities to find your project folder ---
         // Assuming your project folder "DSAProj2" is one level above your build folder
@@ -425,25 +371,15 @@ private:
     void showHelpPage() {
         cards->setCurrentIndex(2);
     }
-
-    // --- CHANGED: All chart functions now take REAL data ---
-    // The signatures and function bodies are all new.
-    // Your old 'showLineChart(QVBoxLayout* layout)' is now 'showLineChart(QVBoxLayout* layout, const std::vector<DataRecord>& data)'
-
     void showLineChart(QVBoxLayout* layout, const std::vector<DataRecord>& data) {
         QLineSeries *series = new QLineSeries();
 
-        // Use real data: Plot glucose for up to 100 sorted patients
         int count = 0;
         for (const auto& record : data) {
-            // --- THIS IS THE FIX ---
-            // We now check the bool flag 'has_glucose'
             if (record.has_glucose == true) { // Check if data exists
-                // And use the 'glucose' double directly
                 series->append(count, record.glucose);
-                // --- END FIX ---
                 count++;
-                if (count >= 100) break; // Limit to 100 points
+                if (count >= 100) break;
             }
         }
 
@@ -455,20 +391,17 @@ private:
 
         QChartView *chartView = new QChartView(chart);
         chartView->setRenderHint(QPainter::Antialiasing);
-        // Insert at index 1 (after heading, before stretch)
         layout->insertWidget(1, chartView);
     }
 
     void showPieChart(QVBoxLayout* layout, const std::vector<DataRecord>& data) {
         QPieSeries *series = new QPieSeries();
 
-        // Use real data: Call your stats.cpp function
         double diabetes_percentage = dia_rate(data);
 
         series->append("Has Diabetes", diabetes_percentage);
         series->append("No Diabetes", 100.0 - diabetes_percentage);
 
-        // Add percentages to labels
         const auto &slices = series->slices();
         for (auto *slice : slices) {
             slice->setLabelVisible(true);
@@ -489,22 +422,20 @@ private:
     }
 
     void showBarChart(QVBoxLayout* layout, const std::vector<DataRecord>& data) {
-        // Use real data: Group patients by decade
         std::map<int, int> ageGroups;
         for (const auto& record : data) {
             int age = record.age;
             if (age < 0) continue;
-            int decade = (age / 10) * 10; // Group 23 -> 20, 45 -> 40
+            int decade = (age / 10) * 10;
             ageGroups[decade]++;
         }
 
         QBarSet *set0 = new QBarSet("Patient Count");
         QStringList categories;
 
-        // std::map automatically sorts keys (decades)
         for (auto const& [decade, count] : ageGroups) {
             *set0 << count;
-            categories << QString("%1s").arg(decade); // "20s", "30s", etc.
+            categories << QString("%1s").arg(decade);
         }
 
         QBarSeries *series = new QBarSeries();
@@ -514,13 +445,13 @@ private:
         chart->addSeries(series);
         chart->setTitle("Age Distribution by Decade (Filtered)");
 
-        // Add X axis (categories)
+        // Add X axis, categories
         QBarCategoryAxis *axisX = new QBarCategoryAxis();
         axisX->append(categories);
         chart->addAxis(axisX, Qt::AlignBottom);
         series->attachAxis(axisX);
 
-        // Add Y axis (count)
+        // Add Y axis, count
         QValueAxis *axisY = new QValueAxis();
         axisY->setLabelFormat("%i"); // Show whole numbers
         chart->addAxis(axisY, Qt::AlignLeft);
@@ -532,9 +463,7 @@ private:
         chartView->setRenderHint(QPainter::Antialiasing);
         layout->insertWidget(1, chartView);
     }
-    // --- END CHANGED ---
 };
-// --- END OF CLASS ---
 
 int main(int argc, char *argv[])
 {
