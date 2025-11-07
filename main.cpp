@@ -335,7 +335,7 @@ private:
                     .arg(filePath)
                 );
         } else {
-            std::cout << "✅ Successfully loaded " << allPatientData.size()
+            std::cout << "Successfully loaded " << allPatientData.size()
                 << " records from " << filename << std::endl;
         }
     }
