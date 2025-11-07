@@ -1,128 +1,221 @@
 #include "sort.h"
 #include <algorithm>
 #include <optional>
+using namespace std;
 
-static double key_of(const DataRecord& r, SortField f) {
-    switch (f) {
+// This function is going to swap the items
+static void mySwap(DataRecord &data_hold_a, DataRecord &data_hold_b) {
+    // holding data for swap
+    DataRecord hold = data_hold_a;
+    // swaping items
+    data_hold_a = data_hold_b;
+    data_hold_b = hold;
+}
+
+//
+static double key_of(const DataRecord& track_1, SortField f_track) {
+    switch (f_track) {
     case SortField::Age:
-        return static_cast<double>(r.age);
+
+        return static_cast<double>(track_1.age);
 
     case SortField::Glucose:
-        // r.glucose is std::optional<double>
-        return r.glucose.has_value() ? *r.glucose : -1.0;
+        // This line will update the curretn bool flag so it can be used
+        return track_1.has_glucose == true ?
+                   track_1.glucose : -1.0;
 
     case SortField::HbA1c:
-        // r.hba1c is std::optional<double>
-        return r.hba1c.has_value() ? *r.hba1c : -1.0;
+        // This line will update the curretn bool flag so it can be used
+        return track_1.has_hba1c == true ?
+                   track_1.hba1c : -1.0;
 
     case SortField::BMI:
-        // r.bmi is std::optional<double>
-        return r.bmi.has_value() ? *r.bmi : -1.0;
+         // This line will update the curretn bool flag so it can be used
+        return track_1.has_bmi == true ?
+                   track_1.bmi : -1.0;
     }
-    return -1.0; // fallback
+
+    return -1.0;
 }
 
-// Put "missing" (-1) at end for Asc, at start for Desc.
-static bool before(const DataRecord& a, const DataRecord& b, SortField f, SortOrder o){
-    double ka = key_of(a, f), kb = key_of(b, f);
-    if (ka < 0 && kb >= 0) return (o == SortOrder::Desc);
-    if (kb < 0 && ka >= 0) return (o == SortOrder::Asc);
-    return (o == SortOrder::Asc) ? (ka < kb) : (ka > kb);
+// Function will have a the total order
+static bool before(const DataRecord& a_data, const DataRecord& b_data, SortField  f, SortOrder o_data){
+
+    double data_1 = key_of(a_data, f);
+
+    double data5 = key_of(b_data, f);
+
+    // the lines will handle the missing values
+
+    if (data_1 < 0 && data5 >= 0) {
+
+        return (o_data == SortOrder::Desc);
+    }
+    if (data5 < 0 && data_1 >= 0) {
+
+        return (o_data == SortOrder ::Asc);
+
+    }
+    // This line will have both present and missing of the numerical number
+    if (o_data == SortOrder::Asc) {
+
+        return (data_1 < data5);
+
+    }
+    else {
+        return (data_1 > data5);
+    }
 }
 
-// --- 1. MERGE SORT (Unchanged) ---
-// This is the Merge Sort implementation.
-static void merge(std::vector<DataRecord>& a, int left, int mid, int right, SortField f, SortOrder o) {
-    int n1 = mid - left + 1;
-    int n2 = right - mid;
-    std::vector<DataRecord> L(n1), R(n2);
-    for (int i = 0; i < n1; i++)
-        L[i] = a[left + i];
+// This is the merge sort algroth we use
+static void merge(vector<DataRecord>& num, int data_left, int data_mid, int data_right, SortField data_f, SortOrder data_o) {
+
+    int n1 = data_mid - data_left + 1;
+    int n2 = data_right - data_mid;
+
+    vector<DataRecord> L(n1), R(n2);
+
+    // iterating through the loop
+    for (int z = 0; z < n1; z++)
+
+        L[z] = num[data_left + z];
+    // iterating through the loop data
     for (int j = 0; j < n2; j++)
-        R[j] = a[mid + 1 + j];
-    int i = 0, j = 0, k = left;
-    while (i < n1 && j < n2) {
-        if (before(L[i], R[j], f, o)) {
-            a[k] = L[i];
-            i++;
-        } else {
-            a[k] = R[j];
+        R[j] = num[data_mid + 1 + j];
+
+    int z_1 = 0, j = 0, k = data_left;
+    // checking id the left should come 1st
+    while (z_1 < n1 && j < n2) {
+        if (before(L[z_1], R[j], data_f, data_o)) {
+
+            num[k] = L[z_1];
+
+            z_1++;
+
+        }
+        else {
+            num[k] = R[j];
             j++;
         }
         k++;
     }
-    while (i < n1) {
-        a[k] = L[i];
-        i++;
+    // This line will copy all leftovers
+    while (z_1 < n1) {
+
+        num[k] = L[z_1];
+
+        z_1++;
         k++;
     }
     while (j < n2) {
-        a[k] = R[j];
+
+        num[k] = R[j];
+
         j++;
+
         k++;
     }
 }
-static void merge_sort_recursive(std::vector<DataRecord>& a, int left, int right, SortField f, SortOrder o) {
-    if (left < right) {
-        int mid = left + (right - left) / 2;
-        merge_sort_recursive(a, left, mid, f, o);
-        merge_sort_recursive(a, mid + 1, right, f, o);
-        merge(a, left, mid, right, f, o);
+
+
+// This void is a recursive merge sort
+
+static void merge_sort_recursive(vector<DataRecord>& data_a, int data_left, int data_right, SortField data_f, SortOrder data_o)
+{
+    // checking if the the case is a one or zero
+    if (data_left < data_right) {
+        // Intalize the int variable for mid point to split
+        int mid = data_left + (data_right - data_left) / 2;
+        // the lines will be sorting the right , mid , left
+        merge_sort_recursive(data_a, data_left, mid, data_f, data_o);
+        merge_sort_recursive(data_a, mid + 1, data_right, data_f, data_o);
+        merge(data_a, data_left, mid, data_right, data_f, data_o);
+
     }
 }
-static void merge_sort(std::vector<DataRecord>& a, SortField f, SortOrder o) {
-    if (a.empty()) return;
-    merge_sort_recursive(a, 0, a.size() - 1, f, o);
+
+// The void will be teh first point of the merge sort
+static void merge_sort(vector<DataRecord>& a_data, SortField f_data, SortOrder o_data) {
+
+    // checks if there is nothing to sort
+    if (a_data.empty()) {
+
+        return;
+    }
+    // calling the recursive function
+    merge_sort_recursive(a_data, 0, (int)a_data.size() - 1, f_data, o_data);
+
 }
 
 
-// --- 2. QUICK SORT (New) ---
-// This is the Quick Sort implementation, replacing Shell Sort.
+//// This is the quick sort algroth we use
+static int partition(vector<DataRecord>& data_a, int data_low, int data_high, SortField data_f, SortOrder data_o) {
 
-// Partition helper for Quick Sort (Lomuto partition scheme)
-static int partition(std::vector<DataRecord>& a, int low, int high, SortField f, SortOrder o) {
-    DataRecord pivot = a[high]; // Pivot
-    int i = (low - 1); // Index of smaller element
+    // This line of code will choose the last element
+    DataRecord _1pivot = data_a[data_high];
 
-    for (int j = low; j <= high - 1; j++) {
-        // If current element is smaller than the pivot (using 'before' comparator)
-        if (before(a[j], pivot, f, o)) {
-            i++; // increment index of smaller element
-            std::swap(a[i], a[j]);
+    int i =(data_low - 1);
+    // The loop iterates trough the low to high
+    for (int j = data_low; j <= data_high - 1; j++) {
+
+        // checks if the 1 st element should come beofre
+
+    if (before(data_a[j], _1pivot, data_f, data_o)) {
+                  i++;
+            mySwap(data_a[i], data_a[j]);
         }
     }
-    std::swap(a[i + 1], a[high]);
+    mySwap(data_a[i + 1],
+        data_a[data_high]);
+
     return (i + 1);
 }
 
-// Recursive helper for Quick Sort
-static void quick_sort_recursive(std::vector<DataRecord>& a, int low, int high, SortField f, SortOrder o) {
-    if (low < high) {
-        // pi is partitioning index, a[pi] is now at right place
-        int pi = partition(a, low, high, f, o);
 
-        // Separately sort elements before and after partition
-        quick_sort_recursive(a, low, pi - 1, f, o);
-        quick_sort_recursive(a, pi + 1, high, f, o);
+static void quick_sort_recursive(vector<DataRecord>& data_a, int data_low, int data_high, SortField data_f, SortOrder data_o) {
+    // checks if the algorith is in range
+    if (data_low < data_high) {
+        // The line below will get the pivot index
+        int pi=  partition(data_a, data_low, data_high, data_f, data_o);
+
+        // The recursive are called to sort
+    quick_sort_recursive(data_a, data_low, pi - 1, data_f, data_o);
+         quick_sort_recursive(data_a, pi + 1, data_high, data_f, data_o);
+     }
+}
+
+static void quick_sort(vector<DataRecord>& data_a, SortField data_f, SortOrder data_o) {
+    // cheks if the data is empty
+
+    if (data_a.empty()) {
+        // returns if data is empty
+        return;
+
     }
+    // Sort algorithm is called
+    quick_sort_recursive(data_a, 0, (int)data_a.size() - 1, data_f, data_o);
 }
 
-// Main Quick Sort function
-static void quick_sort(std::vector<DataRecord>& a, SortField f, SortOrder o) {
-    if (a.empty()) return;
-    quick_sort_recursive(a, 0, a.size() - 1, f, o);
-}
-// --- END QUICK SORT ---
 
+// this function will allows us to choose the algorithm
+void sort_records(vector<DataRecord>& data1_data, Algorithm data1_algo, SortField data1_field, SortOrder data1_order){
 
-// --- UPDATED MAIN FUNCTION ---
-void sort_records(std::vector<DataRecord>& data, Algorithm algo, SortField field, SortOrder order){
-    if (data.size() < 2) return;
+    // checks if the there is a 0 or 1 elements then no actions will happen
+    if ( data1_data.size() == 0 ||  data1_data.size() == 1) {
 
-    // This now calls your new Quick and Merge sort functions
-    if (algo == Algorithm::Quick) {
-        quick_sort(data, field, order);
-    } else if (algo == Algorithm::Merge) {
-        merge_sort(data, field, order);
+            return;
+
+        }
+
+   //checks what was choosen
+    if ( data1_algo == Algorithm::Quick) {
+
+         quick_sort( data1_data,  data1_field,  data1_order);
+
+            }//
+
+    else if ( data1_algo == Algorithm::Merge) {
+
+          merge_sort( data1_data,  data1_field,  data1_order);// recursive function is called
     }
 }

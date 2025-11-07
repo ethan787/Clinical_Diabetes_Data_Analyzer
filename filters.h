@@ -1,12 +1,15 @@
 #ifndef FILTERS_H
 #define FILTERS_H
-
 #include <vector>
 #include <string>
 #include "data_set.h"
+using namespace std;
 
-std::vector<DataRecord> filter_by_gender(const std::vector<DataRecord>& in, const std::string& gender);
-std::vector<DataRecord> filter_by_diabetes(const std::vector<DataRecord>& in, int diabetes_0_or_1);
-std::vector<DataRecord> filter_by_age_range(const std::vector<DataRecord>& in, int minAge, int maxAge);
+// creating the vectors to hold data for the  gender , diabetes , and age.
+vector<DataRecord> filterGen(vector<DataRecord> data, const string& gender);
+
+vector<DataRecord> filterDia(vector<DataRecord> data, int dia_0or_1);
+
+vector<DataRecord> filterAge(vector<DataRecord> data, int low_Age, int topAge);
 
 #endif
