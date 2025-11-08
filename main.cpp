@@ -112,7 +112,14 @@ public:
         layoutF->addRow(new QLabel(tr("Sort By:")), fieldBox);
 
         layoutF->setFieldGrowthPolicy(QFormLayout::AllNonFixedFieldsGrow);
-        form->setStyleSheet("QGroupBox {border: 2px solid rgb(160, 200, 240); border-radius: 5px; width: 400px;}");
+        form->setStyleSheet("QWidget {color: rgb(140, 180, 220);} QGroupBox {border: 2px solid rgb(160, 200, 240); border-radius: 5px; width: 400px; background-color: white;}");
+        minAgeBox->setStyleSheet("background-color: rgb(232, 242, 251); color: rgb(140, 180, 220);");
+        maxAgeBox->setStyleSheet("background-color: rgb(232, 242, 251); color: rgb(140, 180, 220);");
+        genderBox->setStyleSheet("background-color: rgb(232, 242, 251); color: rgb(140, 180, 220);");
+        chartBox->setStyleSheet("background-color: rgb(232, 242, 251); color: rgb(140, 180, 220);");
+        genderBox->setStyleSheet("background-color: rgb(232, 242, 251); color: rgb(140, 180, 220);");
+        algoBox->setStyleSheet("background-color: rgb(232, 242, 251); color: rgb(140, 180, 220);");
+        fieldBox->setStyleSheet("background-color: rgb(232, 242, 251); color: rgb(140, 180, 220);");
 
         QVBoxLayout *verticalBox = new QVBoxLayout;
         verticalBox->addStretch();
@@ -129,7 +136,7 @@ public:
         QFont buttonFont = showChartButton->font();
         buttonFont.setPointSize(12);
         showChartButton->setFont(buttonFont);
-        showChartButton->setStyleSheet("color : rgb(160, 200, 240); font-weight: bold;");
+        showChartButton->setStyleSheet("QPushButton {background-color: white; color : rgb(160, 200, 240); font-weight: bold;} QPushButton:hover {background-color: rgb(245, 250, 255);} QPushButton:pressed {background-color: rgb(200, 220, 240);}");
 
         // page 1 layout
         layout1->addStretch(0);
@@ -159,13 +166,13 @@ public:
         QPushButton *backButton = new QPushButton("Back", page2);
         backButton->setMinimumSize(200, 50);
         backButton->setFont(buttonFont);
-        backButton->setStyleSheet("color : rgb(160, 200, 240); font-weight: bold;");
+        backButton->setStyleSheet("QPushButton {background-color: white; color : rgb(160, 200, 240); font-weight: bold;} QPushButton:hover {background-color: rgb(245, 250, 255);} QPushButton:pressed {background-color: rgb(200, 220, 240);}");
 
         // show page 3 button
         QPushButton *doneButton = new QPushButton("Done", page2);
         doneButton->setMinimumSize(200, 50);
         doneButton->setFont(buttonFont);
-        doneButton->setStyleSheet("color : rgb(160, 200, 240); font-weight: bold;");
+        doneButton->setStyleSheet("QPushButton {background-color: white; color : rgb(160, 200, 240); font-weight: bold;} QPushButton:hover {background-color: rgb(245, 250, 255);} QPushButton:pressed {background-color: rgb(200, 220, 240);}");
 
         QHBoxLayout *buttonBox = new QHBoxLayout;
         buttonBox->addWidget(backButton);
@@ -184,6 +191,11 @@ public:
         QWidget *page3 = new QWidget;
         QVBoxLayout *layout3 = new QVBoxLayout();
 
+        QPushButton *homeButton = new QPushButton("Home", page3);
+        homeButton->setMinimumSize(60, 35);
+        homeButton->setFont(buttonFont);
+        homeButton->setStyleSheet("QPushButton {background-color: white; color : rgb(160, 200, 240); font-weight: bold;} QPushButton:hover {background-color: rgb(245, 250, 255);} QPushButton:pressed {background-color: rgb(200, 220, 240);}");
+
         //heading
         QLabel *helpHeading = new QLabel("How to Get Help:");
         helpHeading->setFont(headingFont);
@@ -191,7 +203,7 @@ public:
 
         QLabel *linksSHeading = new QLabel("Links:");
         linksSHeading->setFont(sHeadingFont);        
-        linksSHeading->setStyleSheet("color: rgb(180, 203, 236); font-weight: bold;");
+        linksSHeading->setStyleSheet("color: rgb(180, 203, 236); font-weight: bold; font-size: 16px;");
 
         QLabel *link1 = new QLabel("<a style='color: rgb(160, 160, 220);' href = \"https://www.redcross.org/about-us/news-and-events/news/2025/diabetes-month--busting-myths--saving-lives.html?srsltid=AfmBOoqMTT_ojPT9rooqXcW0F9jhzdG5rQ9TrjiAL6D3zQuWBrg4rpm7\">Red Cross: Diabetes Myths</a>");
         link1->setTextInteractionFlags(Qt::TextBrowserInteraction);
@@ -220,7 +232,7 @@ public:
         paragraph->setLineWidth(1);
         paragraph->setStyleSheet("background-color: rgb(250, 254, 255); border-radius: 15px; padding: 10px; font-size: 16px; color: rgb(100, 130, 200);");
 
-        QVBoxLayout *paragraphLayout = new QVBoxLayout;
+        QVBoxLayout *paragraphLayout = new QVBoxLayout(paragraph);
 
         QLabel *prevParagraph = new QLabel(
             "Managing diabetes is about awareness and lifestyle choices. "
@@ -230,25 +242,30 @@ public:
             "<br><b>4. Regular Check-ups:</b> Visit your healthcare provider for regular check-ups to monitor for complications. "
             "<br><br>Prevention is important because uncontrolled diabetes can lead to serious health issues, including heart disease, kidney damage, and vision problems. "
             "Early detection and management can significantly improve long-term health outcomes."
+            "<br>"
             );
         prevParagraph->setWordWrap(true);
+        prevParagraph->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
         paragraph->setLayout(paragraphLayout);
+        paragraph->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
         paragraphLayout->addWidget(prevParagraph);
 
         //page 3 layout
+        layout3->addStretch();
+        layout3->addWidget(homeButton, 0, Qt::AlignLeft);
         layout3->addWidget(helpHeading, 0, Qt::AlignCenter);
         layout3->addSpacing(10);
         layout3->addWidget(divider);
         layout3->addSpacing(10);
         layout3->addWidget(prevSHeading, 0, Qt::AlignCenter);
+        layout3->addSpacing(10);
         layout3->addStretch();
         layout3->addWidget(paragraph, 0, Qt::AlignCenter);
         layout3->addStretch();
-        layout3->addSpacing(10);
+        layout3->addSpacing(5);
         layout3->addWidget(linksSHeading, 0, Qt::AlignCenter);
         layout3->addSpacing(10);
         layout3->addLayout(linkBox);
-        layout3->addSpacing(30);
         layout3->addStretch();
         page3->setLayout(layout3);
 
@@ -263,6 +280,7 @@ public:
         connect(showChartButton, &QPushButton::clicked, this, &WelcomeWindow::runBackendPipeline);
         connect(backButton, &QPushButton::clicked, this, &WelcomeWindow::showPageOne);
         connect(doneButton, &QPushButton::clicked, this, &WelcomeWindow::showHelpPage);
+        connect(homeButton, &QPushButton::clicked, this, &WelcomeWindow::showPageOne);
 
         layout->addWidget(cards);
 
