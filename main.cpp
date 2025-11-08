@@ -39,8 +39,6 @@ QT_USE_NAMESPACE
 public:
     WelcomeWindow()
     {
-        //Widgets: StackedWidget -> Page1 Page2
-
         // Setup
         QWidget *centralWidget = new QWidget(this);
         cards = new QStackedWidget();
@@ -290,8 +288,6 @@ public:
 
         // load of CSV data when the app starts
         loadData();
-
-        // vector<QColor> barColors = {QColor(211, 205, 241), QColor(247, 245, 255), QColor(232, 242, 251), QColor(204, 237, 252), QColor(201, 223, 247), QColor(129, 200, 255)};
 
         // Set window properties
         QPalette palette;
