@@ -495,12 +495,16 @@ private:
         // Add X axis, categories
         QBarCategoryAxis *axisX = new QBarCategoryAxis();
         axisX->append(categories);
+        axisX->setTitleText("Age Groups");
+        axisX->setTitleBrush(QBrush(QColor(140, 180, 220)));
         chart->addAxis(axisX, Qt::AlignBottom);
         series->attachAxis(axisX);
 
         // Add Y axis, count
         QValueAxis *axisY = new QValueAxis();
         axisY->setLabelFormat("%i");
+        axisY->setTitleText("Number of People with Diabetes");
+        axisY->setTitleBrush(QBrush(QColor(140, 180, 220)));
         chart->addAxis(axisY, Qt::AlignLeft);
         series->attachAxis(axisY);
 
