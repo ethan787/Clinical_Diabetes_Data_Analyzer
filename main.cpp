@@ -321,6 +321,8 @@ private:
     }
 
     void runBackendPipeline() {
+        QElapsedTimer timer;
+        timer.start();
         // 1. Get all values from the UI
         QString chartType = chartBox->currentText();
         QString gender = genderBox->currentText();
@@ -355,6 +357,7 @@ private:
         std::cout << "Sorting data with " << algoBox->currentText().toStdString() << "..." << std::endl;
         sort_records(filteredData, algo, field, SortOrder::Asc);
         std::cout << "Sort complete." << std::endl;
+        cout << algoBox->currentText().toStdString() << " took " << timer.elapsed() << " ms to run." << endl;
 
         // 4. Get Stats & Show Chart
         cards->setCurrentIndex(1);
