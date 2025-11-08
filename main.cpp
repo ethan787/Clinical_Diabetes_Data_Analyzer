@@ -261,24 +261,17 @@ private:
     std::vector<DataRecord> allPatientData;
 
     void loadData() {
-        // --- Use Qt's path utilities to find your project folder ---
-        // Assuming your project folder "DSAProj2" is one level above your build folder
-        QString baseDir = QCoreApplication::applicationDirPath(); // e.g. "C:/Users/.../DSAProj2/build-Debug"
+        QString baseDir = QCoreApplication::applicationDirPath();
         QDir projectDir(baseDir);
-        if (projectDir.cdUp()) { // Go up one level to "DSAProj2"
-            projectDir.cd("DSAProj2"); // Enter your actual project folder (optional, if needed)
+        if (projectDir.cdUp()) {
+            projectDir.cd("DSAProj2");
         }
 
-        // --- Build the full file path ---
         QString filePath = projectDir.filePath("diabetes_dataset_with_notes.csv");
 
-        // --- Convert to std::string for your load_CSV() ---
         std::string filename = filePath.toStdString();
-
-        // --- Load the CSV ---
         allPatientData = load_CSV(filename);
 
-        // --- Check result ---
         if (allPatientData.empty()) {
             QMessageBox::critical(
                 this, "Error",
@@ -291,10 +284,7 @@ private:
                 << " records from " << filename << std::endl;
         }
     }
-    // --- END ADDED ---
 
-    // --- ADDED: New function to run the entire backend pipeline ---
-    // This replaces your old 'showChartPage()'
     void runBackendPipeline() {
         // 1. Get all values from the UI
         QString chartType = chartBox->currentText();
@@ -302,7 +292,6 @@ private:
         int minAge = minAgeBox->value();
         int maxAge = maxAgeBox->value();
 
-        // Map the UI string to your C++ enum
         Algorithm algo = (algoBox->currentText() == "Quick Sort") ? Algorithm::Quick : Algorithm::Merge;
 
         SortField field;
@@ -312,7 +301,7 @@ private:
         else if (fieldText == "HbA1c") field = SortField::HbA1c;
         else field = SortField::BMI;
 
-        // 2. Run Filter Pipeline (calls your filters.cpp functions)
+        // 2. Run Filter.cpp Pipeline
         std::cout << "Filtering " << allPatientData.size() << " records..." << std::endl;
         std::vector<DataRecord> filteredData = allPatientData;
 
@@ -327,19 +316,18 @@ private:
             return;
         }
 
-        // 3. Run Sort (calls your sort.cpp function)
+        // 3. Run Sort Methods
         std::cout << "Sorting data with " << algoBox->currentText().toStdString() << "..." << std::endl;
-        sort_records(filteredData, algo, field, SortOrder::Asc); // Default to Ascending
+        sort_records(filteredData, algo, field, SortOrder::Asc);
         std::cout << "Sort complete." << std::endl;
 
         // 4. Get Stats & Show Chart
-        cards->setCurrentIndex(1); // Go to chart page
+        cards->setCurrentIndex(1);
         QWidget *page2 = cards->widget(1);
         QVBoxLayout *layout2 = qobject_cast<QVBoxLayout*>(page2->layout());
 
-        clearOldChart(layout2); // Call helper to remove previous chart
+        clearOldChart(layout2);
 
-        // Call the updated chart functions with REAL data
         if (chartType.startsWith("Line Chart")) {
             showLineChart(layout2, filteredData);
         } else if (chartType.startsWith("Pie Chart")) {
@@ -348,25 +336,19 @@ private:
             showBarChart(layout2, filteredData);
         }
     }
-    // --- END ADDED ---
 
-    // --- ADDED: New helper to remove the old chart ---
-    // This prevents charts from stacking on top of each other
     void clearOldChart(QVBoxLayout* layout) {
-        // The chart is at index 1 (0=Heading, 1=Chart, 2=Stretch, 3=Button)
         if (layout->count() > 2) {
             QLayoutItem* item = layout->itemAt(1);
             if (item && item->widget()) {
-                // Check if the widget is actually a QChartView
                 if (dynamic_cast<QChartView*>(item->widget())) {
                     layout->removeItem(item);
-                    delete item->widget(); // Delete the chart view
-                    delete item;            // Delete the layout item
+                    delete item->widget();
+                    delete item;
                 }
             }
         }
     }
-    // --- END ADDED ---
 
     void showHelpPage() {
         cards->setCurrentIndex(2);
@@ -376,7 +358,7 @@ private:
 
         int count = 0;
         for (const auto& record : data) {
-            if (record.has_glucose == true) { // Check if data exists
+            if (record.has_glucose == true) {
                 series->append(count, record.glucose);
                 count++;
                 if (count >= 100) break;
@@ -453,7 +435,7 @@ private:
 
         // Add Y axis, count
         QValueAxis *axisY = new QValueAxis();
-        axisY->setLabelFormat("%i"); // Show whole numbers
+        axisY->setLabelFormat("%i");
         chart->addAxis(axisY, Qt::AlignLeft);
         series->attachAxis(axisY);
 
