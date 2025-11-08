@@ -56,19 +56,20 @@ public:
         QFont headingFont = welcomeLabel->font();
         headingFont.setPointSize(24);
         welcomeLabel->setFont(headingFont);
-        welcomeLabel->setStyleSheet("color : #767676; font-weight: bold;");
+        welcomeLabel->setStyleSheet("color: rgb(140, 180, 220); font-weight: bold;");
 
         // filter label
         QLabel *filterLabel = new QLabel("Filters:", centralWidget);
         QFont sHeadingFont = filterLabel->font();
         sHeadingFont.setPointSize(18);
         filterLabel->setFont(sHeadingFont);
-        filterLabel->setStyleSheet("color : #B2B2B2;");
+        filterLabel->setStyleSheet("color: rgb(180, 203, 236);");
 
         // divider
         QFrame *divider = new QFrame();
         divider->setFrameShape(QFrame::HLine);
         divider->setFrameShadow(QFrame::Sunken);
+        divider->setStyleSheet("background-color: rgb(160, 200, 240);");
 
         // form
         QGroupBox *form = new QGroupBox(tr(""));
@@ -111,6 +112,7 @@ public:
         layoutF->addRow(new QLabel(tr("Sort By:")), fieldBox);
 
         layoutF->setFieldGrowthPolicy(QFormLayout::AllNonFixedFieldsGrow);
+        form->setStyleSheet("QGroupBox {border: 2px solid rgb(160, 200, 240); border-radius: 5px; width: 400px;}");
 
         QVBoxLayout *verticalBox = new QVBoxLayout;
         verticalBox->addStretch();
@@ -127,15 +129,15 @@ public:
         QFont buttonFont = showChartButton->font();
         buttonFont.setPointSize(12);
         showChartButton->setFont(buttonFont);
-        showChartButton->setStyleSheet("color : #767676; font-weight: bold;");
+        showChartButton->setStyleSheet("color : rgb(160, 200, 240); font-weight: bold;");
 
         // page 1 layout
         layout1->addStretch(0);
         layout1->addWidget(welcomeLabel, 0, Qt::AlignCenter);
-        layout1->addSpacing(30);
-        layout1->addWidget(filterLabel, 0, Qt::AlignCenter);
         layout1->addSpacing(10);
         layout1->addWidget(divider);
+        layout1->addSpacing(30);
+        layout1->addWidget(filterLabel, 0, Qt::AlignCenter);        
         layout1->addSpacing(10);
         layout1->addWidget(form, 0, Qt::AlignCenter);
         layout1->addSpacing(30);
@@ -149,23 +151,30 @@ public:
         QVBoxLayout *layout2 = new QVBoxLayout(page2);
 
         // heading
-        QLabel *heading = new QLabel("Graphs Based on Data Selected");
+        QLabel *heading = new QLabel("Graph Based on Data Selected");
         heading->setFont(headingFont);
-        heading->setStyleSheet("color : #767676; font-weight: bold;");
+        heading->setStyleSheet("color : rgb(180, 203, 236); font-weight: bold;");
 
-        // chartType = chartBox->currentText(); //not needed anymore as it got implemented in the pipelie
-        // DO NOT UNCOMMENT
+        // show back button
+        QPushButton *backButton = new QPushButton("Back", page2);
+        backButton->setMinimumSize(200, 50);
+        backButton->setFont(buttonFont);
+        backButton->setStyleSheet("color : rgb(160, 200, 240); font-weight: bold;");
 
         // show page 3 button
-        QPushButton *button = new QPushButton("Done", page2);
-        button->setMinimumSize(200, 50);
-        button->setFont(buttonFont);
-        button->setStyleSheet("color : #767676; font-weight: bold;");
+        QPushButton *doneButton = new QPushButton("Done", page2);
+        doneButton->setMinimumSize(200, 50);
+        doneButton->setFont(buttonFont);
+        doneButton->setStyleSheet("color : rgb(160, 200, 240); font-weight: bold;");
+
+        QHBoxLayout *buttonBox = new QHBoxLayout;
+        buttonBox->addWidget(backButton);
+        buttonBox->addWidget(doneButton);
 
         // page 2 layout
         layout2->addWidget(heading, 0, Qt::AlignCenter);
         layout2->addStretch();
-        layout2->addWidget(button, 0, Qt::AlignCenter);
+        layout2->addLayout(buttonBox);
         layout2->addSpacing(10);
         page2->setLayout(layout2);
         resize(800, 600);
@@ -178,34 +187,47 @@ public:
         //heading
         QLabel *helpHeading = new QLabel("How to Get Help:");
         helpHeading->setFont(headingFont);
-        helpHeading->setStyleSheet("color : #767676; font-weight: bold;");
+        helpHeading->setStyleSheet("color: rgb(140, 180, 220); font-weight: bold;");
 
         QLabel *linksSHeading = new QLabel("Links:");
-        linksSHeading->setFont(sHeadingFont);
-        linksSHeading->setStyleSheet("color : #B2B2B2; font-weight: bold;");
+        linksSHeading->setFont(sHeadingFont);        
+        linksSHeading->setStyleSheet("color: rgb(180, 203, 236); font-weight: bold;");
 
-        QLabel *link = new QLabel("<a href = \"https://www.redcross.org/about-us/news-and-events/news/2025/diabetes-month--busting-myths--saving-lives.html?srsltid=AfmBOoqMTT_ojPT9rooqXcW0F9jhzdG5rQ9TrjiAL6D3zQuWBrg4rpm7\">Red Cross: Diabetes Myths</a>");
-        link->setTextInteractionFlags(Qt::TextBrowserInteraction);
-        link->setOpenExternalLinks(true);
+        QLabel *link1 = new QLabel("<a style='color: rgb(160, 160, 220);' href = \"https://www.redcross.org/about-us/news-and-events/news/2025/diabetes-month--busting-myths--saving-lives.html?srsltid=AfmBOoqMTT_ojPT9rooqXcW0F9jhzdG5rQ9TrjiAL6D3zQuWBrg4rpm7\">Red Cross: Diabetes Myths</a>");
+        link1->setTextInteractionFlags(Qt::TextBrowserInteraction);
+        link1->setOpenExternalLinks(true);
+
+        QLabel *link2 = new QLabel("<a style='color: rgb(160, 160, 220);' href = \"https://www.mayoclinic.org/diseases-conditions/type-2-diabetes/in-depth/diabetes-prevention/art-20047639\">Mayo Clinic: Diabetes Prevention</a>");
+        link2->setTextInteractionFlags(Qt::TextBrowserInteraction);
+        link2->setOpenExternalLinks(true);
+
+        QLabel *link3 = new QLabel("<a style='color: rgb(160, 160, 220);' href = \"https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments\">NIH: Diabetes Treatment</a>");
+        link3->setTextInteractionFlags(Qt::TextBrowserInteraction);
+        link3->setOpenExternalLinks(true);
+
+        QHBoxLayout *linkBox = new QHBoxLayout;
+        linkBox->addWidget(link1, 0, Qt::AlignCenter);
+        linkBox->addWidget(link2, 0, Qt::AlignCenter);
+        linkBox->addWidget(link3, 0, Qt::AlignCenter);
 
         QLabel *prevSHeading = new QLabel("Steps to Prevention:");
         prevSHeading->setFont(sHeadingFont);
-        prevSHeading->setStyleSheet("color : #B2B2B2; font-weight: bold;");
+        prevSHeading->setStyleSheet("color: rgb(180, 203, 236); font-weight: bold;");
 
         QFrame *paragraph = new QFrame;
         paragraph->setFrameShape(QFrame::Box);
         paragraph->setFrameShadow(QFrame::Plain);
         paragraph->setLineWidth(1);
-        paragraph->setStyleSheet("background-color: #F0F0F0; border-radius: 15px; padding: 10px;");
+        paragraph->setStyleSheet("background-color: rgb(250, 254, 255); border-radius: 15px; padding: 10px; font-size: 16px; color: rgb(100, 130, 200);");
 
         QVBoxLayout *paragraphLayout = new QVBoxLayout;
 
         QLabel *prevParagraph = new QLabel(
             "Managing diabetes is about awareness and lifestyle choices. "
-            "<b>1. Healthy Eating:</b> Focus on whole grains, lean proteins, fruits, and vegetables. "
-            "<b>2. Physical Activity:</b> Aim for at least 30 minutes of moderate exercise most days of the week. "
-            "<b>3. Monitor Blood Sugar:</b> Regularly check your glucose levels as advised by your doctor. "
-            "<b>4. Regular Check-ups:</b> Visit your healthcare provider for regular check-ups to monitor for complications. "
+            "<br><b>1. Healthy Eating:</b> Focus on whole grains, lean proteins, fruits, and vegetables. "
+            "<br><b>2. Physical Activity:</b> Aim for at least 30 minutes of moderate exercise most days of the week. "
+            "<br><b>3. Monitor Blood Sugar:</b> Regularly check your glucose levels as advised by your doctor. "
+            "<br><b>4. Regular Check-ups:</b> Visit your healthcare provider for regular check-ups to monitor for complications. "
             "<br><br>Prevention is important because uncontrolled diabetes can lead to serious health issues, including heart disease, kidney damage, and vision problems. "
             "Early detection and management can significantly improve long-term health outcomes."
             );
@@ -215,13 +237,19 @@ public:
 
         //page 3 layout
         layout3->addWidget(helpHeading, 0, Qt::AlignCenter);
-        layout3->addSpacing(10); // Added spacing
-        layout3->addWidget(linksSHeading, 0, Qt::AlignCenter);
-        layout3->addWidget(link, 0, Qt::AlignCenter);
-        layout3->addSpacing(20); // Added spacing
+        layout3->addSpacing(10);
+        layout3->addWidget(divider);
+        layout3->addSpacing(10);
         layout3->addWidget(prevSHeading, 0, Qt::AlignCenter);
+        layout3->addStretch();
         layout3->addWidget(paragraph, 0, Qt::AlignCenter);
-        layout3->addStretch(); // Added stretch
+        layout3->addStretch();
+        layout3->addSpacing(10);
+        layout3->addWidget(linksSHeading, 0, Qt::AlignCenter);
+        layout3->addSpacing(10);
+        layout3->addLayout(linkBox);
+        layout3->addSpacing(30);
+        layout3->addStretch();
         page3->setLayout(layout3);
 
 
@@ -233,7 +261,8 @@ public:
 
         // CONNECT STUFF
         connect(showChartButton, &QPushButton::clicked, this, &WelcomeWindow::runBackendPipeline);
-        connect(button, &QPushButton::clicked, this, &WelcomeWindow::showHelpPage);
+        connect(backButton, &QPushButton::clicked, this, &WelcomeWindow::showPageOne);
+        connect(doneButton, &QPushButton::clicked, this, &WelcomeWindow::showHelpPage);
 
         layout->addWidget(cards);
 
@@ -244,8 +273,14 @@ public:
         // load of CSV data when the app starts
         loadData();
 
+        // vector<QColor> barColors = {QColor(211, 205, 241), QColor(247, 245, 255), QColor(232, 242, 251), QColor(204, 237, 252), QColor(201, 223, 247), QColor(129, 200, 255)};
+
         // Set window properties
+        QPalette palette;
+        palette.setColor(QPalette::Window, QColor(232, 242, 251));
+        setAutoFillBackground(true);
         resize(550, 600);
+        setPalette(palette);
         setWindowTitle("Diabetic Analyzer");
     }
 
@@ -350,6 +385,10 @@ private:
         }
     }
 
+    void showPageOne() {
+        cards->setCurrentIndex(0);
+    }
+
     void showHelpPage() {
         cards->setCurrentIndex(2);
     }
@@ -370,9 +409,11 @@ private:
         chart->createDefaultAxes();
         chart->setTitle("Glucose Levels (Sorted, Max 100 points)");
         chart->legend()->hide();
+        chart->setBackgroundBrush(QBrush(QColor(250, 254, 255)));
 
         QChartView *chartView = new QChartView(chart);
         chartView->setRenderHint(QPainter::Antialiasing);
+        chartView->setFixedSize(600, 480);
         layout->insertWidget(1, chartView);
     }
 
@@ -384,14 +425,18 @@ private:
         series->append("Has Diabetes", diabetes_percentage);
         series->append("No Diabetes", 100.0 - diabetes_percentage);
 
+        vector<QColor> pieColors = {QColor(211, 205, 241), QColor(201, 223, 247)};
         const auto &slices = series->slices();
-        for (auto *slice : slices) {
+
+        for (int i = 0; i < slices.size(); ++i) {
+            QPieSlice *slice = slices[i];
             slice->setLabelVisible(true);
             slice->setLabel(
                 QString("%1 (%2%)")
                     .arg(slice->label())
                     .arg(slice->percentage() * 100, 0, 'f', 1)
                 );
+            slice->setColor(pieColors[i % pieColors.size()]);
         }
 
         QChart *chart = new QChart();
@@ -399,7 +444,9 @@ private:
         chart->setTitle(QString("Diabetes Rate for Filtered Group (n=%1)").arg(data.size()));
 
         QChartView *chartView = new QChartView(chart);
+        chart->setBackgroundBrush(QBrush(QColor(250, 254, 255)));
         chartView->setRenderHint(QPainter::Antialiasing);
+        chartView->setFixedSize(600, 480);
         layout->insertWidget(1, chartView);
     }
 
@@ -413,6 +460,7 @@ private:
         }
 
         QBarSet *set0 = new QBarSet("Patient Count");
+        set0->setColor(QColor(204, 237, 252));
         QStringList categories;
 
         for (auto const& [decade, count] : ageGroups) {
@@ -442,7 +490,9 @@ private:
         chart->legend()->setVisible(false);
 
         QChartView *chartView = new QChartView(chart);
+        chart->setBackgroundBrush(QBrush(QColor(250, 254, 255)));
         chartView->setRenderHint(QPainter::Antialiasing);
+        chartView->setFixedSize(600, 480);
         layout->insertWidget(1, chartView);
     }
 };
