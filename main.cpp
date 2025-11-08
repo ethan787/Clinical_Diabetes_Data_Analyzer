@@ -118,6 +118,7 @@ public:
         genderBox->setStyleSheet("background-color: rgb(232, 242, 251); color: rgb(140, 180, 220);");
         algoBox->setStyleSheet("background-color: rgb(232, 242, 251); color: rgb(140, 180, 220);");
         fieldBox->setStyleSheet("background-color: rgb(232, 242, 251); color: rgb(140, 180, 220);");
+        // fieldBox->setHidden(true);
 
         QVBoxLayout *verticalBox = new QVBoxLayout;
         verticalBox->addStretch();
@@ -279,6 +280,17 @@ public:
         connect(backButton, &QPushButton::clicked, this, &WelcomeWindow::showPageOne);
         connect(doneButton, &QPushButton::clicked, this, &WelcomeWindow::showHelpPage);
         connect(homeButton, &QPushButton::clicked, this, &WelcomeWindow::showPageOne);
+        connect(chartBox, QOverload<int>::of(&QComboBox::currentIndexChanged), this, [=](int index) {
+            if (index == 0) {
+                // fieldBox->setHidden(false);
+                layoutF->labelForField(fieldBox)->show();
+                fieldBox->show();
+            } else {
+                // fieldBox->setHidden(true);
+                layoutF->labelForField(fieldBox)->hide();
+                fieldBox->hide();
+            }
+        });
 
         layout->addWidget(cards);
 
