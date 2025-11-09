@@ -98,7 +98,6 @@ public:
 
         fieldBox = new QComboBox;
         fieldBox->addItem("Age");
-        fieldBox->addItem("Glucose");
         fieldBox->addItem("HbA1c");
         fieldBox->addItem("BMI");
 
@@ -118,7 +117,6 @@ public:
         genderBox->setStyleSheet("background-color: rgb(232, 242, 251); color: rgb(140, 180, 220);");
         algoBox->setStyleSheet("background-color: rgb(232, 242, 251); color: rgb(140, 180, 220);");
         fieldBox->setStyleSheet("background-color: rgb(232, 242, 251); color: rgb(140, 180, 220);");
-        // fieldBox->setHidden(true);
 
         QVBoxLayout *verticalBox = new QVBoxLayout;
         verticalBox->addStretch();
@@ -282,11 +280,9 @@ public:
         connect(homeButton, &QPushButton::clicked, this, &WelcomeWindow::showPageOne);
         connect(chartBox, QOverload<int>::of(&QComboBox::currentIndexChanged), this, [=](int index) {
             if (index == 0) {
-                // fieldBox->setHidden(false);
                 layoutF->labelForField(fieldBox)->show();
                 fieldBox->show();
             } else {
-                // fieldBox->setHidden(true);
                 layoutF->labelForField(fieldBox)->hide();
                 fieldBox->hide();
             }
@@ -360,7 +356,6 @@ private:
         SortField field;
         QString fieldText = fieldBox->currentText();
         if (fieldText == "Age") field = SortField::Age;
-        else if (fieldText == "Glucose") field = SortField::Glucose;
         else if (fieldText == "HbA1c") field = SortField::HbA1c;
         else field = SortField::BMI;
 
@@ -435,10 +430,36 @@ private:
 
         QChart *chart = new QChart();
         chart->addSeries(series);
-        chart->createDefaultAxes();
-        chart->setTitle("Glucose Levels (Sorted, Max 100 points)");
         chart->legend()->hide();
         chart->setBackgroundBrush(QBrush(QColor(250, 254, 255)));
+
+        QValueAxis *axisX = new QValueAxis();
+        axisX->setTitleText("Sample Number");
+        axisX->setTitleBrush(QBrush(QColor(140, 180, 220)));
+        chart->addAxis(axisX, Qt::AlignBottom);
+        series->attachAxis(axisX);
+
+        QValueAxis *axisY = new QValueAxis();
+        QString fieldText = fieldBox->currentText();
+        if (fieldText == "Age") {
+            //check this
+            axisY->setTitleText("Glucose Levels");
+            chart->setTitle("Glucose Levels (Sorted)");
+        } else if (fieldText == "HbA1c") {
+            axisY->setTitleText("HbA1c Levels");
+            chart->setTitle("HbA1c Levels (Sorted)");
+        } else {
+            axisY->setTitleText("BMI");
+            chart->setTitle("BMI (Sorted)");
+        }
+        axisY->setTitleBrush(QBrush(QColor(140, 180, 220)));
+        QFont title = chart->titleFont();
+        title.setBold(true);
+        title.setPointSize(12);
+        chart->setTitleFont(title);
+        chart->setTitleBrush(QBrush(QColor(140, 180, 220)));
+        chart->addAxis(axisY, Qt::AlignLeft);
+        series->attachAxis(axisY);
 
         QChartView *chartView = new QChartView(chart);
         chartView->setRenderHint(QPainter::Antialiasing);
