@@ -90,7 +90,3 @@ Once built:
 * If the project does not compile, verify your **Qt version** and **CMake configuration**
 * Ensure the CSV dataset is named correctly and in the expected folder
 * Remove the `build` folder and re-run CMake to refresh cache if changes fail
-
-## 📄 License
-
-*(Optional — add your chosen license here if applicable)*
